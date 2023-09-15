@@ -1,6 +1,6 @@
 statics:
   google-chat:
-    url: https://chat.googleapis.com/v1/spaces/AAAA2BfmKR4/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=TGFW9iVAbEg7RBV2Eyl0LVIqtZIWOT7oeHLtDNHANbQ
+    url: # google chat webhook url
 
   slack:
-    url: https://hooks.slack.com/services/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
+    url: # slack webhook url

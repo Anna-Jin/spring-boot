@@ -1,0 +1,6 @@
+statics:
+  google-chat:
+    url: # google chat webhook url
+
+  slack:
+    url: # slack webhook url

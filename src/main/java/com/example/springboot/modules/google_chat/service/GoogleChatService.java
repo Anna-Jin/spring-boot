@@ -30,15 +30,12 @@ public class GoogleChatService {
         ResponseCode responseCode = ResponseCode.GOOGLE_CHAT_ERROR;
 
         webClientConnector.callGoogleChat(WebHookMessageBuilder.createGoogleChatMultipleMessage(title, messageHeader, message))
-                .flatMap(response -> {
-                    log.info("메세지 전송 완료 : {}", response);
-                    return Mono.just(ResponseEntity.ok().body(ApiResponse.success()));
-                })
-                .onErrorResume(error -> {
-                    log.error("메세지 전송 실패 : {}", error.getMessage());
-                    return Mono.just(ResponseEntity.status(responseCode.getStatus()).body(ApiResponse.error(responseCode, "메세지 전송 실패 : " + error.getCause().getMessage())));
-                })
-                .subscribe();
+                .flatMap(response -> Mono.just(ResponseEntity.ok().body(ApiResponse.success())))
+                .onErrorResume(error -> Mono.just(ResponseEntity.status(responseCode.getStatus()).body(ApiResponse.error(responseCode, "메세지 전송 실패 : " + error.getCause().getMessage()))))
+                .subscribe(
+                        response -> log.info("메세지 전송 완료 : {}", response),
+                        error -> log.error("메세지 전송 실패 : {}", error.getMessage())
+                );
     }
 
     /**
@@ -52,14 +49,11 @@ public class GoogleChatService {
         ResponseCode responseCode = ResponseCode.GOOGLE_CHAT_ERROR;
 
         webClientConnector.callGoogleChat(WebHookMessageBuilder.createGoogleChatSingleMessage(title, messageHeader, message))
-                .flatMap(response -> {
-                    log.info("메세지 전송 완료 : {}", response);
-                    return Mono.just(ResponseEntity.ok().body(ApiResponse.success()));
-                })
-                .onErrorResume(error -> {
-                    log.error("메세지 전송 실패 : {}", error.getMessage());
-                    return Mono.just(ResponseEntity.status(responseCode.getStatus()).body(ApiResponse.error(responseCode, "메세지 전송 실패 : " + error.getCause().getMessage())));
-                })
-                .subscribe();
+                .flatMap(response -> Mono.just(ResponseEntity.ok().body(ApiResponse.success())))
+                .onErrorResume(error -> Mono.just(ResponseEntity.status(responseCode.getStatus()).body(ApiResponse.error(responseCode, "메세지 전송 실패 : " + error.getCause().getMessage()))))
+                .subscribe(
+                        response -> log.info("메세지 전송 완료 : {}", response),
+                        error -> log.error("메세지 전송 실패 : {}", error.getMessage())
+                );
     }
 }

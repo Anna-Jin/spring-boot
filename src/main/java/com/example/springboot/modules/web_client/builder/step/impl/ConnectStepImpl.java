@@ -72,6 +72,12 @@ public class ConnectStepImpl implements ConnectStep {
         }
     }
 
+    /**
+     * WebClient의 header와 response class 설정 후 subscribe로 호출<br>
+     * 헤더와 응답값이 존재할 때 사용. (ex. 일반적인 api 호출)<br>
+     * 예외처리 포함
+     * @return {@link ResponseStep}
+     */
     @Override
     public Mono<?> connectSubscribe(Map<String, String> headers, Class<?> responseType) {
         try {
@@ -89,6 +95,12 @@ public class ConnectStepImpl implements ConnectStep {
         }
     }
 
+    /**
+     * WebClient의 header와 response class 설정 후 subscribe로 호출<br>
+     * 헤더와 응답값이 존재하지 않을 때 사용. (ex. Google chat webhook api 호출)<br>
+     * 예외처리 포함
+     * @return {@link ResponseStep}
+     */
     @Override
     public Mono<String> connectSubscribe() {
         try {

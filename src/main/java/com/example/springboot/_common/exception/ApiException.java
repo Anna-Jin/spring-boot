@@ -12,12 +12,14 @@ public class ApiException extends RuntimeException {
 
     /* 커스텀 에러 메세지 작성 시 사용 */
     public ApiException(ResponseCode code, String message) {
+        super(message);
         this.code = code;
         this.message = message;
     }
 
     /* 디폴트 에러 메세지 작성 시 사용 */
     public ApiException(ResponseCode code) {
+        super(code.getMessage());
         this.code = code;
         this.message = code.getMessage();
     }

@@ -15,6 +15,8 @@ public class WebClientConnector {
     private final ApiWebClientBuilder webClientBuilder;
     private final ApiStatics statics;
 
+
+
     public Mono<String> callGoogleChat(WebHook requestBody) {
         ApiStatics.GoogleChat googleChat = statics.getGoogleChat();
 
